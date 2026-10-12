@@ -10,14 +10,17 @@ source:
   sha256: 5833ce2f42ed4917f0c66cbebad9f1796c77423dd4462767fec6302523452b7b
 
 build:
-  number: 0
+  number: 1
   # --no-default-features drops the `self-update` feature (updating is
   # conda's job) and `vendored-libgit2`. LIBGIT2_NO_VENDOR and
   # LIBSSH2_SYS_USE_PKG_CONFIG then make libgit2-sys and libssh2-sys link the
   # conda-forge libgit2/libssh2 instead of building their bundled C copies.
+  # PKG_CONFIG_ALLOW_CROSS lets those pkg-config lookups work when
+  # cross-compiling (linux-aarch64, osx-arm64); it is a no-op for native builds.
   script: |
     export LIBGIT2_NO_VENDOR=1
     export LIBSSH2_SYS_USE_PKG_CONFIG=1
+    export PKG_CONFIG_ALLOW_CROSS=1
     cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     cargo install --locked --no-default-features --root ${{ PREFIX }} --path . --no-track
 
