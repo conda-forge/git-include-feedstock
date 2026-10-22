@@ -1,5 +1,5 @@
 context:
-  version: "0.1.4"
+  version: "0.1.5"
 
 package:
   name: git-include
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/Flova/git-include/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 5833ce2f42ed4917f0c66cbebad9f1796c77423dd4462767fec6302523452b7b
+  sha256: 5954219b283d4db7e213dfa67d2ed88ab6bb36710038a3af4f9b8d2f24d70be9
 
 build:
-  number: 1
+  number: 0
   # --no-default-features drops the `self-update` feature (updating is
   # conda's job) and `vendored-libgit2`. LIBGIT2_NO_VENDOR and
   # LIBSSH2_SYS_USE_PKG_CONFIG then make libgit2-sys and libssh2-sys link the
